@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+rm -rf out
+boot -d org.clojure/clojurescript:${CLJS_VERSION-1.9.655} -d reagent:0.6.2 with-cp --write --file cp.txt
+java -cp $(cat cp.txt):src clojure.main build.clj
